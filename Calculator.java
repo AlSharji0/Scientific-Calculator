@@ -106,10 +106,18 @@ public class Calculator {
         }
     }
 
+    /**
+     * Exits the program
+     */
+    public static void exit() {
+        System.exit(0);
+    }
+
     public static void main(String[] args) throws IllegalAccessException, InvocationTargetException {
         menu(Calculator.class);
         System.out.printf("%nSelect a function via index");
         System.out.printf("%nIf function takes a single inputs you may ignore (Number 2: )");
+        System.out.printf("To exit select index 1");
 
         while (true) {
             Scanner sc = new Scanner(System.in);
@@ -118,6 +126,9 @@ public class Calculator {
 
             System.out.printf("%nFunction Index: ");
             index = sc.nextInt();
+
+            if (index == 1)
+                methods[1].invoke(null);
 
             System.out.printf("%nNumber 1: ");
             x1 = sc.nextDouble();
