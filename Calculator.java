@@ -1,5 +1,6 @@
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+import java.util.Scanner;
 
 public class Calculator {
     /** Calculation answer */
@@ -8,7 +9,10 @@ public class Calculator {
     /** Calculation variable. 
      * @hidden x1 is used for single param functions.
     */
-    protected static double x1, x2;
+    protected static double 
+    x1 = 0, x2 = 0;
+
+    protected static Method[] methods;
 
     // Basic Scientific Calculator Funstions:
     public static void add() {
@@ -85,26 +89,46 @@ public class Calculator {
     }
 
     // Helper functions:
-
     /**
      * Prints all methods of a class in a menu fashion.
      * @param _class
      */
     public static void menu(Class<Calculator> _class) {
-        Method[] methods = _class.getDeclaredMethods();
+        methods = _class.getDeclaredMethods();
 
-        int index = 0;
-        for (int i = 0; i < methods.length; ++i) {
+        for (int i = 1; i < methods.length; ++i) {
             String name = methods[i].getName();
 
             // Prints: "1: tan()"
             System.out.println( 
-                index + ": " + name
+                i + ": " + name
             );
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, InvocationTargetException {
         menu(Calculator.class);
+        System.out.printf("%nSelect a function via index");
+        System.out.printf("%nIf function takes a single inputs you may ignore (Number 2: )");
+
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+
+            int index;
+
+            System.out.printf("%nFunction Index: ");
+            index = sc.nextInt();
+
+            System.out.printf("%nNumber 1: ");
+            x1 = sc.nextDouble();
+
+            System.out.printf("%nNumber 2: ");
+            x2 = sc.nextDouble();
+
+            Method selected = methods[index];
+            selected.invoke(null);
+
+            System.out.printf("%nAnswer: " + ans);
+        }
     }
 }
