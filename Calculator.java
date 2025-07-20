@@ -1,4 +1,5 @@
-import java.lang.*;
+import java.lang.reflect.Method;
+
 
 public class Calculator {
     /** Calculation answer */
@@ -9,6 +10,7 @@ public class Calculator {
     */
     protected static double x1, x2;
 
+    // Basic Scientific Calculator Funstions:
     public static void add() {
         ans = x1 + x2;
     }
@@ -82,7 +84,26 @@ public class Calculator {
         ans = Math.max(x1, x2);
     }
 
+    // Helper functions:
+
+    /**
+     * Prints all methods of a class in a menu fashion.
+     * @param _class
+     */
+    public static void menu(Class<Calculator> _class) {
+        Method[] methods = _class.getDeclaredMethods();
+
+        int index = 0;
+        for (Method m : methods) {
+            ++index;
+            String name = m.toString();
+            System.out.println( 
+                index + ": " + name
+            );
+        }
+    }
+
     public static void main(String[] args) {
-        
+        menu(Calculator.class);
     }
 }
