@@ -1,2 +1,1 @@
-# Scientific-Calculator
-Java Scientific Calculator
+# Basic Scientific Calculator
