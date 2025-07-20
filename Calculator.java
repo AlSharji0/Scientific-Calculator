@@ -15,11 +15,11 @@ public class Calculator {
         ans = x1 + x2;
     }
 
-    public static void sub() {
+    public static void subtract() {
         ans = x1 - x2;
     }
 
-    public static void div() {
+    public static void divide() {
         if (x2 == 0) {
             System.out.println("Error: Cannot divide by 0");
             return;
@@ -28,11 +28,11 @@ public class Calculator {
         ans = x1 / x2;
     }
 
-    public static void mul() {
+    public static void multiply() {
         ans = x1 * x2;
     }
 
-    public static void pow() {
+    public static void power() {
         ans = Math.pow(x1, x2);
     }
 
@@ -52,7 +52,7 @@ public class Calculator {
         ans = Math.cos(x1);
     }
 
-    public static void nLog() {
+    public static void natural_log() {
         ans = Math.log(x1);
     }
 
@@ -60,19 +60,19 @@ public class Calculator {
         ans = Math.log10(x1);
     }
 
-    public static void abs() {
+    public static void absolute() {
         ans = Math.abs(x1);
     }
 
-    public static void round() {
+    public static void round_nearest() {
         ans = Math.round(x1);
     }
 
-    public static void roundUp() {
+    public static void round_up() {
         ans = Math.ceil(x1);
     }
 
-    public static void roundDown() {
+    public static void round_down() {
         ans = Math.floor(x1);
     }
 
@@ -94,9 +94,10 @@ public class Calculator {
         Method[] methods = _class.getDeclaredMethods();
 
         int index = 0;
-        for (Method m : methods) {
-            ++index;
-            String name = m.toString();
+        for (int i = 0; i < methods.length; ++i) {
+            String name = methods[i].getName();
+
+            // Prints: "1: tan()"
             System.out.println( 
                 index + ": " + name
             );
